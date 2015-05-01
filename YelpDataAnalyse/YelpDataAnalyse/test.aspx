@@ -4,30 +4,36 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    
-    <title>Test Page</title>
+
+    <title>test page</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="scripts/test.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
     <style>
         #testButton {
-            width:200px;
+            width: 200px;
+            height:50px;
+        }
+        #container {
+            float:left;
         }
     </style>
-    <script type="text/javascript" src="scripts/test.js" ></script>    
+    
 </head>
 
 <body>
 
-    
-    <form id="form1" runat="server">
-        <h1>
-        This is a web app for data visualization!
+    <h1>This is a web app for data visualization!
            <br />
-        <input type ="button" id = "testButton" value="test button" onclick="testButtonClicked()"/><br/>
-        </h1>   
-        <br />
-        for further information:<br />
-        Xuezhang (Alex) Hu:<a href="mailto:hxzpork@gmail.com">hxzpork@gmail.com</a><br />
-        Pan Tan:<a href="mailto:tpan1125@gmail.com">tpan1125@gmail.com</a><br />
-    </form>
+    </h1>
+    <div>
+        <button type="button" id="testButton" style="width: 95px" onclick="displayStarsChart()"/>test button<br/></button>
+    </div>
+    <br />
+    
+    <div id="container" style="width: 600px; height: 400px; margin: 0 auto"></div>    
+    
 </body>
 </html>
 

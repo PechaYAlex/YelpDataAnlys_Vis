@@ -7,24 +7,21 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Threading;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.Services;
 
-namespace YelpDataAnalyse
+namespace JsonPractice
 {
     
-    public partial class test : System.Web.UI.Page
+    class TipsPase
     {
-        [WebMethod]
-        public void getStars()
+        
+        
+        static void Main()
         {
             int[] stars = new int[11];
             int totalCount = 0;
             var watch = Stopwatch.StartNew();
             Console.WriteLine("this is a json test");
-
+            
             using (StreamReader r = new StreamReader(@"C:\yelp_dataset\yelp_academic_dataset_business.json"))
             {
 
@@ -36,22 +33,31 @@ namespace YelpDataAnalyse
                     int starPos = (int)(array.stars / 0.5);
                     stars[starPos]++;
                 }
-                while (!r.EndOfStream)
+                while( !r.EndOfStream)
                 {
-                    json = r.ReadLine();
-                    array = JsonConvert.DeserializeObject<Business>(json);
-                    int starPos = (int)(array.stars / 0.5);
-                    stars[starPos]++;
-                    totalCount++;
+                 json = r.ReadLine();
+                 array = JsonConvert.DeserializeObject<Business>(json);
+                 int starPos = (int)(array.stars / 0.5);
+                 stars[starPos]++;
+                 totalCount++;
                 }
                 watch.Stop();
-                var elapsedMs = watch.ElapsedMilliseconds;   
+                var elapsedMs = watch.ElapsedMilliseconds;
+                for (int i = 0; i < 11; i++)
+                {
+                    Console.Write(stars[i]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+                Console.WriteLine(totalCount);
+                Console.WriteLine("time of parsing:");
+                Console.WriteLine(elapsedMs);
             }
-            //return new int[] { stars[0], stars[1], stars[2], stars[3], stars[4], stars[5], stars[6], stars[7], 
-            //stars[8],stars[9],stars[10]};
+            Console.ReadLine();
         }
-
     }
+
+
     [DataContract]
     class Tips
     {
@@ -98,7 +104,7 @@ namespace YelpDataAnalyse
         internal int review_count;
         [DataMember]
         internal double stars;
-
+      
         // WCF stores any items we did not map here
         [DataMember]
         internal ExtensionDataObject ExtensionData;
