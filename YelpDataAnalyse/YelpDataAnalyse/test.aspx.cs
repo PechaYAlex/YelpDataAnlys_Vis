@@ -18,7 +18,7 @@ namespace YelpDataAnalyse
     public partial class test : System.Web.UI.Page
     {
         [WebMethod]
-        public void getStars()
+        public static int[] getStars()
         {
             int[] stars = new int[11];
             int totalCount = 0;
@@ -49,6 +49,7 @@ namespace YelpDataAnalyse
             }
             //return new int[] { stars[0], stars[1], stars[2], stars[3], stars[4], stars[5], stars[6], stars[7], 
             //stars[8],stars[9],stars[10]};
+            return stars;
         }
 
     }
